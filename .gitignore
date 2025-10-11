@@ -1,0 +1,111 @@
+# ---- Build results ---- STRAIGHT OUT OF AI <3
+bin/
+obj/
+out/
+[Bb]uild/
+[Bb]uildOutput/
+artifacts/
+
+# ---- User-specific files ----
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.userprefs
+
+# ---- IDE settings ----
+.vs/
+.idea/
+*.swp
+*.bak
+*.ncb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+
+# ---- Logs and debug ----
+*.log
+*.tlog
+*.svclog
+*.pidb
+*.tmp
+*.temp
+*.psess
+*.vsp
+*.vspx
+*.vspscc
+*.dbmdl
+
+# ---- Testing ----
+TestResult*
+*.coverage
+*.coveragexml
+*.testsettings
+*.trx
+
+# ---- Publish / Packages ----
+*.Publish.xml
+publish/
+publishprofiles/
+*.pubxml
+*.publishproj
+*.azurePubxml
+*.snupkg
+*.nupkg
+*.nuspec
+.nuget/
+packages/
+PackageRestoreFallbackFolders/
+
+# ---- Entity Framework ----
+Migrations/**/obj/
+Migrations/**/bin/
+
+# ---- Environment / Configuration ----
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.secrets.json
+secrets.json
+.env
+.env.local
+.env.development
+.env.production
+
+# ---- Rider / JetBrains ----
+.idea/
+*.sln.iml
+
+# ---- Visual Studio Code ----
+.vscode/
+.history/
+*.code-workspace
+
+# ---- OS generated ----
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# ---- Temporary files ----
+*.tmp
+*.temp
+*.bak
+*.cache
+*.log
+*.orig
+
+# ---- Python virtual envs (if you use any tooling) ----
+.venv/
+env/
+venv/
+
+# ---- Node (if using npm for frontend) ----
+node_modules/
+dist/
+build/
+
+# ---- Other misc ----
+_ReSharper*/
+[Tt]est[Rr]esult*/
+*.DotSettings.user

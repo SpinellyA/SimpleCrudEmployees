@@ -1,0 +1,23 @@
+﻿@using EmployeeManagementSystem.Client.ViewModels.ComponentVM
+@using MudBlazor
+@using Shared.Enums
+@using ViewModels
+@inject NavbarViewmodel _navbar
+
+<MudNavMenu>
+    <MudNavGroup Title="Employees" Icon="@Icons.Material.Filled.People" Expanded="true">
+        <MudNavLink OnClick="@(() => _navbar.OnSelect(NavMenuItem.Employees_List))" Icon="@Icons.Material.Filled.List">
+            Employees
+        </MudNavLink>
+        <MudNavLink OnClick="@(() => _navbar.OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.ManageAccounts">
+            Manage Employees
+        </MudNavLink>
+    </MudNavGroup>
+
+    <MudNavGroup Title="Account" Icon="@Icons.Material.Filled.AccountCircle" Expanded="true">
+        <MudNavLink OnClick="@(() => _navbar.OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Logout">
+            Logout
+        </MudNavLink>
+    </MudNavGroup>
+</MudNavMenu>
+

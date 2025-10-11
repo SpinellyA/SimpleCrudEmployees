@@ -1,0 +1,81 @@
+﻿@using EmployeeManagementSystem.Client.ViewModels.EmployeeViewmodels
+@using MudBlazor
+@inject EmployeesListViewmodel _viewmodel
+@inject ISnackbar Snackbar
+
+<MudExpansionPanel Disabled="true" Expanded="true">
+    <TitleContent>
+        <MudText Typo="Typo.h6">Employees</MudText>
+    </TitleContent>
+    <ChildContent>
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+        </MudStack>
+
+        <MudTable @ref="_viewmodel._table" T="EmployeeResponse" Items="@_viewmodel.Employees" MultiSelection="true" Hover="true"
+                  @bind-SelectedItems="_viewmodel.selectedItems" OnRowClick="@_viewmodel.OnRowClick">
+            <HeaderContent>
+                <MudTh>Id</MudTh>
+                <MudTh>Name</MudTh>
+                <MudTh>Description</MudTh>
+                <MudTh>Address</MudTh>
+                <MudTh>Salary</MudTh>
+                <MudTh>Status</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Id">@context.Id</MudTd>
+                <MudTd DataLabel="Sign">@context.Name</MudTd>
+                <MudTd DataLabel="Name">@context.Description</MudTd>
+                <MudTd DataLabel="Position">@context.Address</MudTd>
+                <MudTd DataLabel="Molar mass">@context.Salary</MudTd>
+                <MudTd DataLabel="Molar mass">@context.Status</MudTd>
+            </RowTemplate>
+            <PagerContent>
+                <MudTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
+            </PagerContent>
+            @* <FooterContent>
+                <MudTd colspan="5">Select All</MudTd>
+            </FooterContent> *@
+        </MudTable>
+        @* <MudSwitch @bind-Value="_selectOnRowClick" Color="Color.Primary">Select on row click</MudSwitch>
+        <MudSwitch @bind-Value="_selectionChangeable" Color="Color.Primary">Selection is changeable</MudSwitch> *@
+    </ChildContent>
+</MudExpansionPanel>
+<MudDivider />
+
+
+<MudStack Row Spacing="2" AlignItems="AlignItems.Center">
+    <MudButton Variant="Variant.Outlined" OnClick="_viewmodel.FirstPage" Disabled="@(_viewmodel._pageIndex <= 1)">
+        First
+    </MudButton>
+    <MudButton Variant="Variant.Outlined" OnClick="_viewmodel.PrevPage" Disabled="@(_viewmodel._pageIndex <= 1)">
+        Previous
+    </MudButton>
+    <MudText Class="mx-2">Page @_viewmodel._pageIndex</MudText>
+    <MudButton Variant="Variant.Outlined" OnClick="_viewmodel.NextPage" Disabled="@(_viewmodel._pageIndex >= _viewmodel._totalPages)">
+        Next
+    </MudButton>
+    <MudButton Variant="Variant.Outlined" OnClick="_viewmodel.LastPage" Disabled="@(_viewmodel._pageIndex >= _viewmodel._totalPages)">
+        Last
+    </MudButton>
+</MudStack>
+
+<MudButton OnClick="_viewmodel.HandleAdd">Add Employee</MudButton>
+<MudButton OnClick="_viewmodel.HandleDelete">Delete Employee/s</MudButton>
+<MudButton OnClick="_viewmodel.HandleView">View Employee</MudButton>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        _viewmodel._table = new();
+        await _viewmodel.LoadData();
+        _viewmodel.SnackbarLink += HandleSnackbar;
+        _viewmodel.NotifyStateChanged += StateHasChanged;
+    }
+
+    private void HandleSnackbar(string message)
+    {
+        Snackbar.Add(message);
+    }
+
+}

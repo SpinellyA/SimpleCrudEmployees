@@ -1,0 +1,27 @@
+﻿@page "/"
+@inject NavbarViewmodel _navbar
+@using EmployeeManagementSystem.Client.Components
+@using EmployeeManagementSystem.Client.ViewModels.ComponentVM
+
+@switch(_navbar.Selected)
+{
+    case NavMenuItem.Employees_List:
+    <GetEmployeesList/>
+    break;
+    case NavMenuItem.Employees_Add:
+    <AddEmployeeForm/>
+    break;
+    case NavMenuItem.Employees_View:
+    <EditEmployeeForm/>
+    break;
+    case NavMenuItem.Roles_Manage:
+    <ManageRoleScreen/>
+    break;
+}
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        _navbar.OnChange += StateHasChanged;
+    }
+}

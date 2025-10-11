@@ -1,0 +1,55 @@
+﻿@page "/employees/add"
+
+@inject AddEmployeeFormViewmodel _viewmodel
+@inject ISnackbar Snackbar
+
+<MudExpansionPanel Disabled="true" Expanded="true">
+    <TitleContent>
+        <MudText Typo="Typo.h6">Add Employee</MudText>
+    </TitleContent>
+    <ChildContent>
+        <MudForm>
+            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="pa-2" />
+
+            <MudStack>
+                <MudText Typo="Typo.subtitle2">Employee Name</MudText>
+                <MudTextField T="string" @bind-Text="_viewmodel.NameField" Label="Employee Name" Variant="Variant.Outlined" />
+            </MudStack>
+
+            <MudStack>
+                <MudText Typo="Typo.subtitle2">Employee Description</MudText>
+                <MudTextField T="string" @bind-text="_viewmodel.DescriptionField" Label="Employee Description" Variant="Variant.Outlined" Lines="4" />
+                <MudTextField T="string" @bind-Text="_viewmodel.AddressField" Label="Employee Address" Variant="Variant.Outlined"/>
+                <MudNumericField T="double" @bind-Value="_viewmodel.SalaryField" Label="Employee Salary" Format="F1" Step="0.5" Variant="Variant.Outlined" />
+            </MudStack>
+
+            <MudStack>
+                <MudSelect T="string" @bind-Value="_viewmodel.StatusField" Variant="Variant.Outlined">
+                    @foreach(var status in _viewmodel._statuses)
+                    {
+                        <MudSelectItem T="string" Value="status">@status</MudSelectItem>
+                    }
+                </MudSelect>
+            </MudStack>
+        </MudForm>
+
+            <MudStack>  
+            <MudButton Variant="Variant.Filled" onclick="_viewmodel.HandleAdd" Color="Color.Primary">Add Employee</MudButton>
+            </MudStack>
+    </ChildContent>
+</MudExpansionPanel>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        _viewmodel.OnChange += StateHasChanged;
+        _viewmodel.SnackbarLink += HandleSnackbar;
+    }
+
+    private void HandleSnackbar(string message)
+    {
+        Snackbar.Add(message);
+    }
+
+}
