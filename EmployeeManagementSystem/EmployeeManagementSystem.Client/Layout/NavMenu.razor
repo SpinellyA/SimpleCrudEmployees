@@ -1,23 +1,53 @@
-﻿@using EmployeeManagementSystem.Client.ViewModels.ComponentVM
-@using MudBlazor
-@using Shared.Enums
-@using ViewModels
-@inject NavbarViewmodel _navbar
+﻿
 
 <MudNavMenu>
-    <MudNavGroup Title="Employees" Icon="@Icons.Material.Filled.People" Expanded="true">
-        <MudNavLink OnClick="@(() => _navbar.OnSelect(NavMenuItem.Employees_List))" Icon="@Icons.Material.Filled.List">
-            Employees
-        </MudNavLink>
-        <MudNavLink OnClick="@(() => _navbar.OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.ManageAccounts">
-            Manage Employees
-        </MudNavLink>
+    <MudNavGroup Title="System" Icon="@Icons.Material.Filled.Settings" Expanded="true">
+        <MudNavGroup Title="Notification" Icon="@Icons.Material.Filled.Notifications">
+            <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Announcement">
+                Bulletin Board
+            </MudNavLink>
+            <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Dashboard">
+                Dashboard
+            </MudNavLink>
+            <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.NotificationsActive">
+                Notifications
+            </MudNavLink>
+        </MudNavGroup>
     </MudNavGroup>
 
-    <MudNavGroup Title="Account" Icon="@Icons.Material.Filled.AccountCircle" Expanded="true">
-        <MudNavLink OnClick="@(() => _navbar.OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Logout">
-            Logout
-        </MudNavLink>
+    <MudNavGroup Title="Workflow" Icon="@Icons.Material.Filled.Work" Expanded="true">
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Inbox">Work Inbox</MudNavLink>
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Outbox">Work Outbox</MudNavLink>
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Cancel">Cancelled Items</MudNavLink>
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Delete">Deleted Items</MudNavLink>
+    </MudNavGroup>
+
+    <MudNavGroup Title="Security" Icon="@Icons.Material.Filled.Security" Expanded="true">
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.VerifiedUser">Invoke Role</MudNavLink>
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Logout">Logout</MudNavLink>
+    </MudNavGroup>
+
+    <MudNavGroup Title="Help" Icon="@Icons.Material.Filled.HelpOutline" Expanded="true">
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.MenuBook">Manual</MudNavLink>
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.TipsAndUpdates">Tips</MudNavLink>
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Forum">Support Forum</MudNavLink>
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Feedback">Feedback</MudNavLink>
+    </MudNavGroup>
+
+    <MudNavGroup Title="Common Objects" Icon="@Icons.Material.Filled.List" Expanded="true">
+        <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Groups">Party</MudNavLink>
+        <MudNavGroup Title="Places" Icon="@Icons.Material.Filled.Place">
+            <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Category">Area Types</MudNavLink>
+            <MudNavLink OnClick="@(() => OnSelect(NavMenuItem.Roles_Manage))" Icon="@Icons.Material.Filled.Map">Areas</MudNavLink>
+        </MudNavGroup>
     </MudNavGroup>
 </MudNavMenu>
+
+
+@code {
+
+    private void OnSelect(NavMenuItem item)
+    {
+    }
+}
 
