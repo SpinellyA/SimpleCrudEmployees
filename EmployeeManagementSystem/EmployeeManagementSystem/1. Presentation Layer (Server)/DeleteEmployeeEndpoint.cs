@@ -3,12 +3,10 @@ using FastEndpoints;
 public class DeleteEmployeeEndpoint : Endpoint<DeleteEmployeeRequest>
 {
     private readonly EmployeeService employeeService;
-    private readonly EmployeeStatusService employeeStatusService;
 
-    public DeleteEmployeeEndpoint(EmployeeService employeeService, EmployeeStatusService employeeStatusService)
+    public DeleteEmployeeEndpoint(EmployeeService employeeService)
     {
         this.employeeService = employeeService;
-        this.employeeStatusService = employeeStatusService;
     }
 
     public override void Configure()

@@ -26,6 +26,9 @@ builder.Services.AddScoped<IEmployeeDeletionPolicy, EmployeeDeletionPolicy>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<EmployeeDeletionPolicy>();
 
+builder.Services.AddScoped<Query>();
+builder.Services.AddScoped<Mutation>();
+
 // Application Layer Services here
 builder.Services.AddScoped<EmployeeService>();
 builder.Services.AddScoped<EmployeeStatusService>();
@@ -50,7 +53,23 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri("https://localhost:7185/") // or your server URL
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+        policy.WithOrigins("http://localhost:3000") // React app origin
+              .AllowAnyHeader()
+              .AllowAnyMethod());
+});
+
+// HotChocolateStuff
+builder.Services.AddGraphQLServer()
+    .AddQueryType<Query>()
+    .AddMutationType<Mutation>();
+
 var app = builder.Build();
+
+app.UseCors();
+app.MapGraphQL();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

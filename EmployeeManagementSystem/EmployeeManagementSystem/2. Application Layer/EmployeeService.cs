@@ -66,7 +66,7 @@ public class EmployeeService
             employee.Salary = salary;
 
             await _statusService.UpdateEmployeeStatus(employee, status);
-
+            // add role service call
             await _uow.CommitAsync();
 
         } catch
