@@ -48,15 +48,17 @@ builder.Services.AddRazorComponents()
 // Fast Endpoints
 builder.Services.AddFastEndpoints();
 
+var serviceAddress = builder.Configuration["ServiceAddress"] ?? "";
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("https://localhost:7185/") // or your server URL
+    BaseAddress = new Uri(serviceAddress) // or your server URL
 });
 
+var reactFrontEndUrl = builder.Configuration["ReactFrontEndUrl"] ?? "";
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
-        policy.WithOrigins("http://localhost:3000") // React app origin
+        policy.WithOrigins(reactFrontEndUrl) // React app origin
               .AllowAnyHeader()
               .AllowAnyMethod());
 });
@@ -83,11 +85,9 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseFastEndpoints();
-
-
 app.UseAntiforgery();
 
 app.MapStaticAssets();
